@@ -20,10 +20,14 @@ public class Ruin {
 		
 		boolean gameRunning = true;
 		
-		for(int day = 1; day <= totalSimulations + 1; day ++) {
+		int succeed = 0;
+		int ruin = 0;
+		
+		for(int day = 1; day < totalSimulations + 1; day ++) {
 			
 			int gameAmount = startAmount;
 			int plays = 0;
+			gameRunning = true;
 
 			while(gameRunning) {
 				
@@ -46,11 +50,24 @@ public class Ruin {
 			if (gameAmount == winLimit) {
 				System.out.println("The day number is " + day + ". There were " + plays + " number of plays. You succeeded.");
 			}
-			
+		
 			else if (gameAmount == 0){
 				System.out.println("The day number is " + day + ". There were " + plays + " number of plays. You failed.");
+				ruin +=1;
 			}
 		
 		}
+		
+		double expectedRuin;
+		double ruinRate = (double)ruin/(totalSimulations);
+		double a = (1-winChance)/(winChance);
+		
+		if (winChance == .5) {
+			expectedRuin = 1 - (double)startAmount/winLimit;
+		} else {
+			expectedRuin = (Math.pow(a,startAmount)-Math.pow(a,winLimit))/(1-Math.pow(a,winLimit));
+		}
+	
+		System.out.println("Ruin rate from simulation: " + ruinRate + ". Expected ruin rate: " + expectedRuin);
 	}
 }
