@@ -19,7 +19,6 @@ public class Ruin {
 		
 		while(gameRunning) {
 			
-			
 			if(Math.random() < winChance) {
 				startAmount += 1;
 				System.out.println("Congrats you won a dollar.");
@@ -34,7 +33,7 @@ public class Ruin {
 			} else if (startAmount == winLimit) {
 				System.out.println("Congrats you have hit the win limit!");
 				gameRunning = false;
-			}
+			} 
 		}
 	}
 }
